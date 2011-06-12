@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>
+    HOD
+    {%if is_dev%}
+      (DEV)
+    {%endif%}
+    {%block title1%}
+    {%endblock%}
+    {%block title2%}
+    {%endblock%}
+  </title>
+  <link rel="icon" href="{{media_url}}favicon.ico" />
+  <link type="text/css" rel="stylesheet" href="{{media_url}}styles.css" />
+  <script type="text/javascript" src="{{media_url}}script.js"></script>
+
+   <!-- head block to insert js/css for forms processing -->
+   {%block head%}{%endblock%}
+   <!-- /head -->
+</head>
+<body onunload="M_unloadPage();">
+
+<!-- Begin help window -->
+<script type="text/javascript"><!--
+var xsrfToken = '{{xsrf_token}}';
+var helpDisplayed = false;
+document.onclick = M_clickCommon;
+var media_url = "{{media_url}}";
+// -->
+</script>
+<div id="help" style="display: none;">
+{%block help%}{%endblock%}
+</div>
+<!-- End help window -->
+
+<div align="right">
+{%if is_dev%}
+<div style="float:left; color:green; font-weight:bold">HOD: DEVELOPMENT SERVER</div>
+{%else%}
+<div style="float:left; font-weight:bold"><i>HOD</i></div>
+{%endif%}
+{%if user%}
+<b>{{user.email}} ({%nickname user True%})</b>
+|
+{%if must_choose_nickname%}
+<span style="color:red">Please choose your nickname with</span>{%endif%}
+<a class="novisit" href="{%url intranet.views.settings%}">Settings</a>
+|
+{%endif%}
+{%if is_dev%}
+<a class="novisit" target="_blank" href="/_ah/admin">Admin</a>
+|
+{%endif%}
+<a class="novisit" target="_blank"
+   href="#">Help</a>
+|
+{%if user%}
+<a class="novisit" href="{{sign_out}}">Sign out</a>
+{% else %}
+<a class="novisit" href="{{sign_in}}">Sign in</a>
+{%endif%}
+</div>
+
+<div class="counter">({{counter}})</div>
+<div class="mainmenu">
+  {%block mainmenu%}
+  <a href="{%url intranet.views.index%}" >Home</a>
+  <a href="{%url intranet.views.passengers%}">Passenger</a>
+  <a href="{%url intranet.views.rooms%}">Room</a>
+  <a href="{%url intranet.views.services%}">Services</a>
+  {%endblock%}
+</div>
+<div class="mainmenu2">
+  {%block mainmenu2%}{%endblock%}
+</div>
+
+<div>
+{%block body%}BODY GOES HERE{%endblock%}
+</div>
+{%block popup%}{%endblock%}
+
+<p></p>
+<div style="float: left;">
+  <a target="_blank" href="http://code.google.com/appengine/"><img border="0"
+   src="{{media_url}}appengine-noborder-120x30.gif"
+   alt="Powered by Google App Engine" /></a>
+</div>
+
+<div class="extra" style="font-size: 9pt; float: right; text-align: right;">
+  <div style="height:14px;">
+  <img src="{{media_url}}rss.gif" alt="RSS Feeds" width="14" height="14"
+       align="top" />
+  </div>
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-4803694-4");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+</body>
+</html>

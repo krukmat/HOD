@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 23
+/svn/!svn/ver/735/trunk
+END
+app.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/svn/!svn/ver/712/trunk/app.yaml
+END
+appengine_config.py
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/702/trunk/appengine_config.py
+END
+TODO
+K 25
+svn:wc:ra_dav:version-url
+V 28
+/svn/!svn/ver/543/trunk/TODO
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/!svn/ver/85/trunk/__init__.py
+END
+settings.py
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/602/trunk/settings.py
+END
+index.yaml
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/!svn/ver/716/trunk/index.yaml
+END
+update_accounts.py
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/410/trunk/update_accounts.py
+END
+COPYING
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/svn/!svn/ver/23/trunk/COPYING
+END
+main.py
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/svn/!svn/ver/676/trunk/main.py
+END
+upload.py
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/!svn/ver/730/trunk/upload.py
+END
+urls.py
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/svn/!svn/ver/702/trunk/urls.py
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 30
+/svn/!svn/ver/702/trunk/README
+END
+update_entities.py
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/429/trunk/update_entities.py
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/svn/!svn/ver/565/trunk/Makefile
+END

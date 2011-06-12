@@ -1,0 +1,21 @@
+{%extends "base.html"%}
+
+{%block mainmenu%}
+  <a href="{%url intranet.views.index%}" class="active">Home</a>
+  <a href="{%url intranet.views.passengers%}">Passenger</a>
+  <a href="{%url intranet.views.rooms%}">Room</a>
+  <a href="{%url intranet.views.services%}">Services</a>
+{%endblock%}
+
+
+{%block mainmenu2%}
+  {%if user%}
+    <a href="#">Send message</a>
+    |
+    <a href="#">Open email</a>
+  {%endif%}
+{%endblock%}
+
+
+{%block body%}
+{%endblock%}

@@ -1,0 +1,43 @@
+{%extends "base.html"%}
+{%block title1%}Passengers -{%endblock%}
+{%block head%}{{form.media}}{%endblock%}
+{%block mainmenu%}
+  <a href="{%url intranet.views.index%}" >Home</a>
+  <a href="{%url intranet.views.passengers%}" class="active">Passenger</a>
+  <a href="{%url intranet.views.rooms%}">Room</a>
+  <a href="{%url intranet.views.services%}">Services</a>
+  {%endblock%}
+{%block mainmenu2%}
+  {%if user%}
+    <a href="{%url intranet.views.passengers%}">List</a>
+    |
+    <a href="{%url intranet.views.passengers_new%}">New</a>
+  {%endif%}
+{%endblock%}  
+{%block body%}
+
+{%if form.errors%}
+<h2>There Were Errors!</h2>
+{%else%}
+<h2>Passenger</h2>
+{%endif%}
+<div class="issue-list">
+	  <table id="queues" style="clear:both;">
+	    {%if not passengers%}
+	     <span class="disabled">(None)</span>
+	{%else%}
+	     {%include "passenger_list_heading.html"%}
+	     {%for passenger in passengers%}
+	       {%include "passenger_list_row.html"%}
+	     {%endfor%}
+	{%endif%}
+	  </table>
+</div>
+	
+<a id="resizer" style="display:none;cursor:pointer">
+<img src="{{media_url}}zippyplus.gif"></a>
+<script language="JavaScript" type="text/javascript"><!--
+M_addTextResizer_(document.getElementById("create-form"));
+--></script>
+
+{%endblock%}

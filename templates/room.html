@@ -1,0 +1,39 @@
+{%extends "base.html"%}
+{%block title1%}Rooms -{%endblock%}
+{%block head%}{{form.media}}{%endblock%}
+{%block mainmenu%}
+  <a href="{%url intranet.views.index%}" >Home</a>
+  <a href="{%url intranet.views.passengers%}">Passenger</a>
+  <a href="{%url intranet.views.rooms%}" class="active">Room</a>
+  <a href="{%url intranet.views.services%}">Services</a>
+  {%endblock%}
+{%block mainmenu2%}
+  {%if user%}
+    <a href="{%url intranet.views.rooms%}">List</a>
+    |
+    <a href="{%url intranet.views.rooms_new%}">New</a>
+  {%endif%}
+{%endblock%}  
+{%block body%}
+
+<h2>Rooms</h2>
+<div class="issue-list">
+	  <table id="queues" style="clear:both;">
+	    {%if not rooms%}
+	     <span class="disabled">(None)</span>
+	{%else%}
+	     {%include "room_list_heading.html"%}
+	     {%for room in rooms%}
+	       {%include "room_list_row.html"%}
+	     {%endfor%}
+	{%endif%}
+	  </table>
+</div>
+	
+<a id="resizer" style="display:none;cursor:pointer">
+<img src="{{media_url}}zippyplus.gif"></a>
+<script language="JavaScript" type="text/javascript"><!--
+M_addTextResizer_(document.getElementById("create-form"));
+--></script>
+
+{%endblock%}

@@ -1,0 +1,23 @@
+<tr name="issue">
+  <td class="first" width="14"><img src="{{media_url}}closedtriangle.gif" 
+    style="visibility: hidden;" width="12" height="9" /></td>
+  <td width="34" align="left" style="white-space: nowrap">
+{%if passenger.edit_allowed and not passenger.closed%}
+<span class="issue-close" id="issue-close-{{issue.key.id}}">
+    <a href="{%url intranet.views.passengers_delete%}?id={{passenger.key.id}}">
+      <img src="{{media_url}}close.gif" title="Close This Issue" width="15"
+      height="15" border="0"></a>
+</span>
+{%endif%}</td>
+  <td>
+    <div class="subject">
+      <a class="noul" href="{%url intranet.views.passengers_edit%}?id={{passenger.key.id}}"
+      id="issue-title-{{passenger.key.id}}">{{passenger.first_name}}</a>
+      {%if passenger.closed %} (Closed) {%endif%}
+    </div>
+  </td>
+  <td><div class="users">{{passenger.last_name}}</div></td>
+  <td><div class="users">{{passenger.email}}</div></td>
+  <td align="center">{{passenger.type_id}} {{passenger.id}}</td>
+  <td class="last"><div class="date">{{passenger.modified|timesince}}</div></td>
+</tr>

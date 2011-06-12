@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/473/trunk/templates/feeds
+END
+closed_description.html
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/325/trunk/templates/feeds/closed_description.html
+END
+template_title.html
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/325/trunk/templates/feeds/template_title.html
+END
+template_description.html
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/473/trunk/templates/feeds/template_description.html
+END
+reviews_title.html
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/325/trunk/templates/feeds/reviews_title.html
+END
+reviews_description.html
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/325/trunk/templates/feeds/reviews_description.html
+END
+all_title.html
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/325/trunk/templates/feeds/all_title.html
+END
+mine_title.html
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/325/trunk/templates/feeds/mine_title.html
+END
+issue_title.html
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/325/trunk/templates/feeds/issue_title.html
+END
+closed_title.html
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/325/trunk/templates/feeds/closed_title.html
+END
+mine_description.html
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/325/trunk/templates/feeds/mine_description.html
+END
+all_description.html
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/325/trunk/templates/feeds/all_description.html
+END
+issue_description.html
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/325/trunk/templates/feeds/issue_description.html
+END
