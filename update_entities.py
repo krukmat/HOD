@@ -5,8 +5,8 @@
 #  - Make sure that the remote API is included in app.yaml.
 #  - Run "tools/appengine_console.py APP_ID".
 #  - Import this module.
-#  - Import models from codereview.
-#  - update_entities.run(models.Issue) updates issues.
+#  - Import models from intranet.
+#  - update_entities.run(models.Room) updates rooms.
 
 
 import logging
