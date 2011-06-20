@@ -102,10 +102,16 @@ class Passenger(HODModel): #Es la clase para Pasajero
   email = db.EmailProperty()
   url = db.LinkProperty()
   
+  def __str__(self):
+      return self.first_name+" "+self.last_name
+  
 class Room(HODModel):
     number = db.StringProperty(required=True)
     floor = db.StringProperty(required=True)
     available = db.BooleanProperty(default=True)
+    
+    def __str__(self):
+      return "floor:"+self.floor+",number:"+self.number
 
 class Service(HODModel):
     code = db.StringProperty(required=True)
@@ -113,6 +119,21 @@ class Service(HODModel):
     cost = db.FloatProperty(required=True,default=0)
 
 
+### Lodging ###
+class Lodging(HODModel):
+    date_checkin = db.DateTimeProperty(required=True)
+    date_checkout = db.DateTimeProperty(required=False)
+    passenger = db.ReferenceProperty(Passenger,required=True)
+    room = db.ReferenceProperty(Room,required=True)
+    total =  db.FloatProperty(required=True,default=0)
+  
+### ServicesxLodging ###
+class ServicesxLodging(HODModel):
+    date = db.DateTimeProperty(required=True,auto_now_add=True)
+    lodging = db.ReferenceProperty(Lodging,required=True)
+    service = db.ReferenceProperty(Service,required=True)
+    total =  db.FloatProperty(required=True,default=0)
+  
   
 ### Accounts ###
 

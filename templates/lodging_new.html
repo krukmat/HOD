@@ -3,16 +3,16 @@
 {%block head%}{{form.media}}{%endblock%}
 {%block mainmenu%}
   <a href="{%url intranet.views.index%}" >Home</a>
-  <a href="{%url intranet.views.passengers%}" class="active">Passenger</a>
+  <a href="{%url intranet.views.passengers%}">Passenger</a>
   <a href="{%url intranet.views.rooms%}">Room</a>
   <a href="{%url intranet.views.services%}">Services</a>
-  <a href="{%url intranet.views.lodgings%}">Lodgings</a>
+  <a href="{%url intranet.views.lodgings%}" class="active">Lodging</a>  
   {%endblock%}
 {%block mainmenu2%}
   {%if user%}
-    <a href="{%url intranet.views.passengers%}">List</a>
+    <a href="{%url intranet.views.lodgings%}">List</a>
     |
-    <a href="{%url intranet.views.passengers_new%}">New</a>
+    <a href="{%url intranet.views.lodgings_new%}">New</a>
   {%endif%}
 {%endblock%}  
 {%block body%}
@@ -20,20 +20,16 @@
 {%if form.errors%}
 <h2>There Were Errors!</h2>
 {%else%}
-<h2>Passenger</h2>
+<h2>Lodging</h2>
 {%endif%}
-<div class="issue-list">
-	  <table id="queues" style="clear:both;">
-	    {%if not passengers%}
-	     <span class="disabled">(None)</span>
-	{%else%}
-	     {%include "passenger_list_heading.html"%}
-	     {%for passenger in passengers%}
-	       {%include "passenger_list_row.html"%}
-	     {%endfor%}
-	{%endif%}
-	  </table>
-</div>
+<form action="{%url intranet.views.lodgings_new%}"
+      method="post" enctype="multipart/form-data" id="create-form">
+<input type="hidden" name="xsrf_token" value="{{xsrf_token}}">
+<table>
+{{form}}
+<tr><td><input type="submit" value="Create"></td></tr>
+</table>
+</form>
 	
 <a id="resizer" style="display:none;cursor:pointer">
 <img src="{{media_url}}zippyplus.gif"></a>

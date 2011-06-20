@@ -65,7 +65,7 @@ from django.core.urlresolvers import reverse
 
 # Local imports
 import models
-from models import Passenger,Room, Service
+from models import Passenger,Room, Service, Lodging
 import library
 
 # Add our own template library.
@@ -132,6 +132,11 @@ class RoomForm(djangoforms.ModelForm):
 class ServiceForm(djangoforms.ModelForm):
     class Meta:
         model = Service
+        exclude = ['uuid']
+
+class LodgingForm(djangoforms.ModelForm):
+    class Meta:
+        model = Lodging
         exclude = ['uuid']
 
 
@@ -623,6 +628,48 @@ def _paginate_issues_with_cursor(page_url,
   if extra_template_params:
     params.update(extra_template_params)
   return _inner_paginate(request, issues, template, params)
+
+def lodgings(request):
+      lodgings = models.Lodging.all().filter("active = ",True)
+      return respond(request, 'lodging.html', {'form': LodgingForm(),'lodgings':lodgings})
+
+def lodgings_new(request):
+    if request.method != 'POST':
+        form = LodgingForm()
+        return respond(request, 'lodging_new.html', {'form': form })
+    
+    form = LodgingForm(request.POST)
+    if form.is_valid():
+        entity = form.save()
+        entity.put()
+        return HttpResponseRedirect(reverse(lodgings))
+    else:
+        return respond(request, 'lodging_new.html', {'form': form })
+
+def lodgings_delete(request):
+    id = int(request.GET.get('id'))
+    lodging = Lodging.get(db.Key.from_path('Lodging', id))
+    passenger.active = False
+    passenger.put()
+    return HttpResponseRedirect(reverse(lodgings))
+    
+
+def lodgings_edit(request):
+    id = int(request.GET.get('id'))
+    lodging = Lodging.get(db.Key.from_path('Lodging', id))
+    if request.method != 'POST':
+            form = LodgingForm(instance=lodging)
+            return respond(request, 'lodging_edit.html', {'form': form, 'id': id })
+    
+    form = LodgingForm(request.POST,instance=lodging)
+    if form.is_valid():
+        entity = form.save()
+        entity.put()
+        return HttpResponseRedirect(reverse(lodging))
+    else:
+        return respond(request, 'lodging_edit.html', {'form': form })
+
+
 
 def passengers(request):
       passengers = models.Passenger.all().filter("active = ",True)

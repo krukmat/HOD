@@ -1,0 +1,24 @@
+<tr name="issue">
+  <td class="first" width="14"><img src="{{media_url}}closedtriangle.gif" 
+    style="visibility: hidden;" width="12" height="9" /></td>
+  <td width="34" align="left" style="white-space: nowrap">
+{%if lodging.edit_allowed and not lodging.closed%}
+<span class="issue-close" id="issue-close-{{issue.key.id}}">
+    <a href="{%url intranet.views.lodgings_delete%}?id={{lodging.key.id}}">
+      <img src="{{media_url}}close.gif" title="Close This Issue" width="15"
+      height="15" border="0"></a>
+</span>
+{%endif%}</td>
+  <td>
+    <div class="subject">
+      <a class="noul" href="{%url intranet.views.lodgings_edit%}?id={{lodging.key.id}}"
+      id="issue-title-{{lodging.key.id}}">{{lodging.date_checkin}}</a>
+      {%if lodging.closed %} (Closed) {%endif%}
+    </div>
+  </td>
+  <td><div class="users">{{lodging.date_checkout}}</div></td>
+  <td><div class="users">{{lodging.passenger}}</div></td>
+  <td><div class="users">{{lodging.room}}</div></td>
+  <td align="center">{{lodging.passenger.active}}</td>
+  <td class="last"><div class="date">{{lodging.modified|timesince}}</div></td>
+</tr>
