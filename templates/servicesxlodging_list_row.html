@@ -1,0 +1,23 @@
+<tr name="issue">
+  <td class="first" width="14"><img src="{{media_url}}closedtriangle.gif" 
+    style="visibility: hidden;" width="12" height="9" /></td>
+  <td width="34" align="left" style="white-space: nowrap">
+{%if servicexlodging.edit_allowed and not servicexlodging.closed%}
+<span class="issue-close" id="issue-close-{{issue.key.id}}">
+    <a href="{%url intranet.views.consumption_delete%}?id={{room.key.id}}">
+      <img src="{{media_url}}close.gif" title="Close This Issue" width="15"
+      height="15" border="0"></a>
+</span>
+{%endif%}</td>
+  <td>
+    <div class="subject">
+      <a class="noul" href="{%url intranet.views.consumption_edit%}?id={{servicexlodging.key.id}}"
+      id="issue-title-{{room.key.id}}">{{servicexlodging.date}}</a>
+      {%if servicexlodging.closed %} (Closed) {%endif%}
+    </div>
+  </td>
+  <td><div class="users">{{servicexlodging.lodging}}</div></td>
+  <td><div class="users">{{servicexlodging.service}}</div></td>
+  <td><div class="users">{{servicexlodging.total}}</div></td>
+  <td class="last"><div class="date">{{servicexlodging.modified|timesince}}</div></td>
+</tr>

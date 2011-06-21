@@ -1,0 +1,40 @@
+{%extends "base.html"%}
+{%block title1%}Passengers -{%endblock%}
+{%block head%}{{form.media}}{%endblock%}
+{%block mainmenu%}
+  <a href="{%url intranet.views.index%}" >Home</a>
+  <a href="{%url intranet.views.passengers%}">Passenger</a>
+  <a href="{%url intranet.views.rooms%}">Room</a>
+  <a href="{%url intranet.views.services%}" class="active">Services</a>
+  <a href="{%url intranet.views.consumption%}">Services by Lodging</a>
+  {%endblock%}
+{%block mainmenu2%}
+  {%if user%}
+    <a href="{%url intranet.views.consumption%}">List</a>
+    |
+    <a href="{%url intranet.views.consumption_new%}">New</a>
+  {%endif%}
+{%endblock%}  
+{%block body%}
+
+{%if form.errors%}
+<h2>There Were Errors!</h2>
+{%else%}
+<h2>Service</h2>
+{%endif%}
+<form action="{%url intranet.views.consumption_edit%}?id={{id}}"
+      method="post" enctype="multipart/form-data" id="create-form">
+<input type="hidden" name="xsrf_token" value="{{xsrf_token}}">
+<table>
+{{form}}
+<tr><td><input type="submit" value="Edit"></td></tr>
+</table>
+</form>
+	
+<a id="resizer" style="display:none;cursor:pointer">
+<img src="{{media_url}}zippyplus.gif"></a>
+<script language="JavaScript" type="text/javascript"><!--
+M_addTextResizer_(document.getElementById("create-form"));
+--></script>
+
+{%endblock%}

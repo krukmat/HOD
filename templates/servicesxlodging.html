@@ -1,0 +1,46 @@
+{%extends "base.html"%}
+{%block title1%}Passengers -{%endblock%}
+{%block head%}{{form.media}}{%endblock%}
+{%block mainmenu%}
+  <a href="{%url intranet.views.index%}" >Home</a>
+  <a href="{%url intranet.views.passengers%}">Passenger</a>
+  <a href="{%url intranet.views.rooms%}">Room</a>
+  <a href="{%url intranet.views.services%}">Services</a>
+  <a href="{%url intranet.views.lodgings%}">Lodgings</a>
+ <a href="{%url intranet.views.consumption%}" class="active">Services by Lodging</a> 
+{%endblock%}
+
+{%block mainmenu2%}
+  {%if user%}
+    <a href="{%url intranet.views.consumption%}">List</a>
+    |
+    <a href="{%url intranet.views.consumption_new%}">New</a>
+  {%endif%}
+{%endblock%}  
+
+{%block body%}
+{%if form.errors%}
+<h2>There Were Errors!</h2>
+{%else%}
+<h2>servicesxlodging</h2>
+{%endif%}
+<div class="issue-list">
+	  <table id="queues" style="clear:both;">
+	    {%if not servicesxlodging%}
+	     <span class="disabled">(None)</span>
+	{%else%}
+	     {%include "servicesxlodging_list_heading.html"%}
+	     {%for servicexlodging in servicesxlodging%}
+	       {%include "servicesxlodging_list_row.html"%}
+	     {%endfor%}
+	{%endif%}
+	  </table>
+</div>
+	
+<a id="resizer" style="display:none;cursor:pointer">
+<img src="{{media_url}}zippyplus.gif"></a>
+<script language="JavaScript" type="text/javascript"><!--
+M_addTextResizer_(document.getElementById("create-form"));
+--></script>
+
+{%endblock%}
