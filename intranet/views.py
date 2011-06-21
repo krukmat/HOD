@@ -65,7 +65,7 @@ from django.core.urlresolvers import reverse
 
 # Local imports
 import models
-from models import Passenger,Room, Service, Lodging
+from models import Passenger,Room, Service, Lodging, ServicesxLodging
 import library
 
 # Add our own template library.
@@ -132,6 +132,11 @@ class RoomForm(djangoforms.ModelForm):
 class ServiceForm(djangoforms.ModelForm):
     class Meta:
         model = Service
+        exclude = ['uuid']
+        
+class ServicesxLodgingForm(djangoforms.ModelForm):
+    class Meta:
+        model = ServicesxLodging
         exclude = ['uuid']
 
 class LodgingForm(djangoforms.ModelForm):
@@ -629,7 +634,45 @@ def services_edit(request):
     else:
         return respond(request, 'service_edit.html', {'form': form })
 
+def consumption(request):
+    servicesxlodging = models.ServicesxLodging.all().filter("active = ",True)
+    return respond(request, 'servicesxlodging.html', {'servicesxlodging':servicesxlodging})
 
+def consumption_new(request):
+    if request.method != 'POST':
+        form = ServicesxLodgingForm()
+        return respond(request, 'servicesxlodging_new.html', {'form': form })
+    
+    form = ServicesxLodgingForm(request.POST)
+    if form.is_valid():
+        entity = form.save()
+        entity.put()
+        return HttpResponseRedirect(reverse(consumption))
+    else:
+        return respond(request, 'servicesxlodging_new.html', {'form': form })
+
+def consumption_delete(request):
+    id = int(request.GET.get('id'))
+    service = ServicesxLodging.get(db.Key.from_path('ServicesxLodging', id))
+    service.active = False
+    service.put()
+    return HttpResponseRedirect(reverse(consumption))
+    
+
+def consumption_edit(request):
+    id = int(request.GET.get('id'))
+    service = ServicesxLodging.get(db.Key.from_path('ServicesxLodging', id))
+    if request.method != 'POST':
+            form = ServicesxLodgingForm(instance=service)
+            return respond(request, 'servicesxlodging_edit.html', {'form': form, 'id': id })
+    
+    form = ServicesxLodgingForm(request.POST,instance=service)
+    if form.is_valid():
+        entity = form.save()
+        entity.put()
+        return HttpResponseRedirect(reverse(consumption))
+    else:
+        return respond(request, 'servicesxlodging_edit.html', {'form': form })
 
 
 def _get_emails(form, label):

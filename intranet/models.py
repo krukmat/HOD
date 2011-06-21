@@ -67,15 +67,6 @@ class HODModel (db.Model):
   closed = db.BooleanProperty(default=False)  
   _is_starred = None
 
-  @property
-  def is_starred(self):
-    """Whether the current user has this issue starred."""
-    if self._is_starred is not None:
-      return self._is_starred
-    account = Account.current_user_account
-    self._is_starred = account is not None and self.key().id() in account.stars
-    return self._is_starred
-
   def user_can_edit(self, user):
     """Return true if the given user has permission to edit this issue."""
     return user == self.owner
@@ -117,6 +108,9 @@ class Service(HODModel):
     code = db.StringProperty(required=True)
     description = db.TextProperty(required=True)
     cost = db.FloatProperty(required=True,default=0)
+    
+    def __str__(self):
+      return "code:"+self.code+",description:"+self.description
 
 
 ### Lodging ###
@@ -126,6 +120,9 @@ class Lodging(HODModel):
     passenger = db.ReferenceProperty(Passenger,required=True)
     room = db.ReferenceProperty(Room,required=True)
     total =  db.FloatProperty(required=True,default=0)
+    
+    def __str__(self):
+      return "passenger:"+str(self.passenger)+",room:"+str(self.room)
   
 ### ServicesxLodging ###
 class ServicesxLodging(HODModel):
